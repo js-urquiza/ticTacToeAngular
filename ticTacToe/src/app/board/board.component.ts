@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class BoardComponent {
 
+  squares: any[] = []; // Representa los 9 movimientos en el tablero
+  xIsNext: boolean = false; // Determina el jugar en turno
+  winner!: string; //Indica si gano X o O;
+
 }
