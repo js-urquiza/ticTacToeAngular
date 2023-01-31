@@ -9,7 +9,7 @@ export class BoardComponent implements OnInit {
 
   squares: any[] = []; // Representa los 9 movimientos en el tablero
   xIsNext: boolean = false; // Determina el jugar en turno
-  winner!: string | null; //Indica si gano X o O;
+  winner: string | null = null; //Indica si gano X o O;
 
   ngOnInit() {
 
@@ -32,6 +32,7 @@ export class BoardComponent implements OnInit {
       this.squares.splice(idx, 1, this.player); //Pero si está vacío o null, elimina ese valor y agrega con el valor del jugador de turno
       this.xIsNext = !this.xIsNext; //Asignamos el turno al jugador contrario
     }
+    this.winner = this.calculateWinner();
   }
 
   calculateWinner() {
@@ -45,18 +46,17 @@ export class BoardComponent implements OnInit {
       [0, 4, 8],
       [2, 4, 6]
     ];
-
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (
         this.squares[a] &&
-        this.squares[a] == this.squares[b] &&
-        this.squares[a] == this.squares[c]
+        this.squares[a] === this.squares[b] &&
+        this.squares[a] === this.squares[c]
       ) {
         return this.squares[a];
       }
-      return null;
     }
+    return null;
   }
 
 }
